@@ -221,6 +221,24 @@ export TO_UPPER=false
 python -m base64mcp.main
 ```
 
+1) Claude Desktop（mcpServers JSON）
+把你的 server 配成用 uvx 启动。args 填你在 PyPI 上发布的“可执行命令/包提供的命令”。
+
+mcp-example 给的 uvx 启动方式就是：uvx base64mcp（并可配环境变量 TO_LOW/TO_UPPER）
+Copy{
+  "mcpServers": {
+    "base64mcp": {
+      "command": "uvx",
+      "args": ["base64mcp"],
+      "env": {
+        "TO_LOW": "true",
+        "TO_UPPER": "false"
+      }
+    }
+  }
+}
+说明：之所以能写成 args: ["base64mcp"]，是因为它在 pyproject.toml 里用 [project.scripts] 暴露了命令入口（示例里就是 base64mcp = "base64mcp.main:main_cli"）
+
 ## 许可证
 
 MIT
